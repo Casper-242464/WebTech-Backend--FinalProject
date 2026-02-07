@@ -1,0 +1,68 @@
+<%- include("../partials/header", { title }) %>
+<section class="hero mb-5">
+  <div class="hero-text">
+    <p class="eyebrow">Discover recipes by what you have.</p>
+    <h1>Cook smarter with filters for time, calories, and ingredients.</h1>
+    <p class="lead">Build your next meal plan from the community board.</p>
+  </div>
+  <form class="glass-panel p-4" method="get" action="/">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Title</label>
+        <input class="form-control" name="title" placeholder="Spicy noodles" value="<%= filters.title || "" %>" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Ingredient</label>
+        <input class="form-control" name="ingredient" placeholder="chicken" value="<%= filters.ingredient || "" %>" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Max cook time (min)</label>
+        <input class="form-control" type="number" name="maxTime" value="<%= filters.maxTime || "" %>" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Max calories</label>
+        <input class="form-control" type="number" name="maxCalories" value="<%= filters.maxCalories || "" %>" />
+      </div>
+    </div>
+    <div class="d-flex gap-2 mt-4">
+      <button class="btn btn-primary" type="submit">Search</button>
+      <a class="btn btn-outline-light" href="/">Reset</a>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="section-title">Recipe Board</h2>
+    <span class="pill"><%= recipes.length %> recipes</span>
+  </div>
+  <div class="row g-4">
+    <% if (recipes.length === 0) { %>
+      <div class="col-12">
+        <div class="glass-panel p-4">No recipes yet. Add the first one!</div>
+      </div>
+    <% } %>
+    <% recipes.forEach((recipe) => { %>
+      <div class="col-md-6 col-lg-4">
+        <article class="recipe-card h-100">
+          <div class="recipe-card-body">
+            <h3><%= recipe.title %></h3>
+            <p class="muted"><%= recipe.description || "No description provided." %></p>
+            <div class="recipe-meta">
+              <span><%= recipe.cookTimeMinutes %> min</span>
+              <span><%= recipe.calories %> cal</span>
+            </div>
+            <div class="recipe-meta">
+              <span>By <%= recipe.author?.username || "Unknown" %></span>
+              <span><%= recipe.category?.name || "Uncategorized" %></span>
+            </div>
+          </div>
+          <div class="recipe-card-footer">
+            <a class="btn btn-sm btn-outline-light" href="/recipes/<%= recipe._id %>/view">View</a>
+          </div>
+        </article>
+      </div>
+    <% }); %>
+  </div>
+</section>
+<%- include("../partials/footer") %>

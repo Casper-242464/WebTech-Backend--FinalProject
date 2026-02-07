@@ -1,0 +1,39 @@
+<%- include("../partials/header", { title }) %>
+<section class="glass-panel p-4 mb-4">
+  <h1 class="section-title">Welcome, <%= user.username %></h1>
+  <p class="muted">Email: <%= user.email %></p>
+  <p class="muted">Role: <%= user.role %></p>
+  <p><%= user.bio || "Add a short bio from the API update profile endpoint." %></p>
+</section>
+
+<section>
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="section-title">Your Recipes</h2>
+    <a class="btn btn-outline-light" href="/recipes/new">Create new</a>
+  </div>
+  <div class="row g-4">
+    <% if (recipes.length === 0) { %>
+      <div class="col-12">
+        <div class="glass-panel p-4">No recipes yet.</div>
+      </div>
+    <% } %>
+    <% recipes.forEach((recipe) => { %>
+      <div class="col-md-6">
+        <article class="recipe-card h-100">
+          <div class="recipe-card-body">
+            <h3><%= recipe.title %></h3>
+            <p class="muted"><%= recipe.description || "No description provided." %></p>
+            <div class="recipe-meta">
+              <span><%= recipe.cookTimeMinutes %> min</span>
+              <span><%= recipe.calories %> cal</span>
+            </div>
+          </div>
+          <div class="recipe-card-footer">
+            <a class="btn btn-sm btn-outline-light" href="/recipes/<%= recipe._id %>/view">View</a>
+          </div>
+        </article>
+      </div>
+    <% }); %>
+  </div>
+</section>
+<%- include("../partials/footer") %>

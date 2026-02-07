@@ -1,0 +1,22 @@
+<%- include("../partials/header", { title }) %>
+<section class="glass-panel p-4 mb-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div>
+      <h1 class="section-title"><%= recipe.title %></h1>
+      <p class="muted">By <%= recipe.author?.username || "Unknown" %></p>
+      <p class="muted">Category: <%= recipe.category?.name || "Uncategorized" %></p>
+    </div>
+    <div class="pill"><%= recipe.cookTimeMinutes %> min | <%= recipe.calories %> cal</div>
+  </div>
+  <p class="mt-3"><%= recipe.description || "No description provided." %></p>
+</section>
+
+<section class="glass-panel p-4">
+  <h2 class="section-title">Ingredients</h2>
+  <ul class="ingredient-list">
+    <% recipe.ingredients.forEach((item) => { %>
+      <li><%= item %></li>
+    <% }); %>
+  </ul>
+</section>
+<%- include("../partials/footer") %>
