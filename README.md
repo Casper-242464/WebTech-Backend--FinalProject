@@ -1,6 +1,6 @@
 ## Recipe Share - Final Project
 
-Recipe Share is a recipe sharing web app with a recipe board, detailed recipe views, a profile page, and a creation flow. The backend uses Node.js, Express, MongoDB, JWT auth, and a modular MVC structure. The UI uses Bootstrap with a custom theme and responsive layout.
+Recipe Share is a recipe sharing web app with a recipe board, detailed recipe views, a profile page, and a creation flow. The backend uses Node.js, Express, MongoDB, JWT auth, and a modular MVC structure with a services layer. The UI uses Bootstrap with a custom theme and responsive layout.
 
 ### Features
 

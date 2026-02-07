@@ -1,17 +1,13 @@
 const { asyncHandler } = require("../utils/asyncHandler");
-const User = require("../models/User");
+const { getProfileById, updateProfileById } = require("../services/userService");
 
 const getProfile = asyncHandler(async (req, res) => {
-  res.json(req.user);
+  const user = await getProfileById(req.user._id);
+  res.json(user);
 });
 
 const updateProfile = asyncHandler(async (req, res) => {
-  const updates = req.body;
-  const user = await User.findByIdAndUpdate(req.user._id, updates, {
-    new: true,
-    runValidators: true,
-  }).select("-password");
-
+  const user = await updateProfileById(req.user._id, req.body);
   res.json(user);
 });
 
