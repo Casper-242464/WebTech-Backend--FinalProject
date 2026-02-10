@@ -33,9 +33,7 @@ function deleteRecipe(recipeId) {
   
   fetch(`/recipes/${recipeId}`, {
     method: 'DELETE',
-    headers: {
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    }
+    credentials: 'same-origin'
   })
   .then(response => {
     if (response.ok) {
