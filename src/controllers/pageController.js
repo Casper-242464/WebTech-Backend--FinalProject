@@ -6,11 +6,14 @@ const {
 } = require("../services/pageService");
 
 const renderHome = asyncHandler(async (req, res) => {
+  const Category = require("../models/Category");
   const recipes = await getHomeRecipes(req.query);
+  const categories = await Category.find().sort("name");
 
   res.render("pages/index", {
     title: "Recipe Board",
     recipes,
+    categories,
     filters: req.query,
     user: req.user || null,
   });
@@ -48,9 +51,13 @@ const renderRecipeDetail = asyncHandler(async (req, res) => {
 });
 
 const renderRecipeCreate = asyncHandler(async (req, res) => {
+  const Category = require("../models/Category");
+  const categories = await Category.find().sort("name");
+  
   res.render("pages/recipe-create", {
     title: "Create Recipe",
     user: req.user || null,
+    categories,
   });
 });
 

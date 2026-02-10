@@ -16,6 +16,15 @@
         <input class="form-control" name="ingredient" placeholder="chicken" value="<%= filters.ingredient || "" %>" />
       </div>
       <div class="col-md-6">
+        <label class="form-label">Category</label>
+        <select class="form-control" name="category">
+          <option value="">All Categories</option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category._id %>" <%= filters.category === category._id.toString() ? 'selected' : '' %>><%= category.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="col-md-6">
         <label class="form-label">Max cook time (min)</label>
         <input class="form-control" type="number" name="maxTime" value="<%= filters.maxTime || "" %>" />
       </div>

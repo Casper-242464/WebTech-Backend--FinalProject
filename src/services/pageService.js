@@ -16,6 +16,9 @@ const getHomeRecipes = async (query) => {
   if (query.maxCalories) {
     filters.calories = { $lte: Number(query.maxCalories) };
   }
+  if (query.category) {
+    filters.category = query.category;
+  }
 
   return Recipe.find(filters)
     .populate("author", "username")

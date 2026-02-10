@@ -9,16 +9,25 @@
         <input class="form-control" name="title" required />
       </div>
       <div class="col-md-6">
-        <label class="form-label">Cook time (min)</label>
-        <input class="form-control" type="number" name="cookTimeMinutes" required />
-      </div>
-      <div class="col-md-6">
         <label class="form-label">Calories</label>
         <input class="form-control" type="number" name="calories" required />
       </div>
       <div class="col-md-6">
+        <label class="form-label">Category</label>
+        <select class="form-control" name="categoryId">
+          <option value="">Select a category (optional)</option>
+          <% categories.forEach(category => { %>
+            <option value="<%= category._id %>"><%= category.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="col-md-6">
         <label class="form-label">Image URL</label>
         <input class="form-control" name="imageUrl" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Cook time (min)</label>
+        <input class="form-control" type="number" name="cookTimeMinutes" required />
       </div>
       <div class="col-12">
         <label class="form-label">Description</label>
