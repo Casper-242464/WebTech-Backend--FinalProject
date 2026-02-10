@@ -11,7 +11,8 @@ const createRecipe = asyncHandler(async (req, res) => {
   const recipe = await createRecipeForUser(req.user._id, req.body);
   res.status(201).render("pages/recipe-created", { 
     title: "Recipe Created", 
-    recipe 
+    recipe,
+    user: req.user || null,
   });
 });
 

@@ -12,6 +12,7 @@ const errorHandler = (err, req, res, next) => {
       title: "Error",
       status,
       message: payload.message,
+      user: req.user || null,
     });
   }
 
