@@ -1,5 +1,8 @@
 <%- include("../partials/header", { title }) %>
 <section class="glass-panel p-4 mb-4">
+  <% if (recipe.imageUrl) { %>
+    <img src="<%= recipe.imageUrl %>" alt="<%= recipe.title %>" class="mb-4" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px;">
+  <% } %>
   <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
     <div>
       <h1 class="section-title"><%= recipe.title %></h1>
