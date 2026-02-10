@@ -1,0 +1,31 @@
+<%- include("../partials/header", { title }) %>
+<section class="glass-panel p-4 text-center">
+  <div class="mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="text-success" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+  </div>
+  <h1 class="section-title">Recipe Created Successfully!</h1>
+  <p class="muted mb-4">Your recipe "<%= recipe.title %>" has been created.</p>
+  
+  <div class="card mb-4 mx-auto" style="max-width: 600px;">
+    <% if (recipe.imageUrl) { %>
+    <img src="<%= recipe.imageUrl %>" class="card-img-top" alt="<%= recipe.title %>" style="max-height: 300px; object-fit: cover;">
+    <% } %>
+    <div class="card-body text-start">
+      <h5 class="card-title"><%= recipe.title %></h5>
+      <p class="card-text"><%= recipe.description %></p>
+      <ul class="list-unstyled mb-3">
+        <li><strong>Cook Time:</strong> <%= recipe.cookTimeMinutes %> minutes</li>
+        <li><strong>Calories:</strong> <%= recipe.calories %></li>
+        <li><strong>Ingredients:</strong> <%= recipe.ingredients.join(', ') %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="d-flex gap-3 justify-content-center">
+    <a href="/recipes" class="btn btn-primary">View All Recipes</a>
+    <a href="/recipes/create" class="btn btn-outline-secondary">Create Another</a>
+  </div>
+</section>
+<%- include("../partials/footer") %>

@@ -12,6 +12,7 @@ const renderHome = asyncHandler(async (req, res) => {
     title: "Recipe Board",
     recipes,
     filters: req.query,
+    user: req.user || null,
   });
 });
 
@@ -22,6 +23,7 @@ const renderProfile = asyncHandler(async (req, res) => {
     title: "Profile",
     user,
     recipes,
+    currentUser: req.user,
   });
 });
 
@@ -34,27 +36,40 @@ const renderRecipeDetail = asyncHandler(async (req, res) => {
       title: "Not Found",
       status: 404,
       message: "Recipe not found",
+      user: req.user || null,
     });
   }
 
   res.render("pages/recipe-detail", {
     title: recipe.title,
     recipe,
+    user: req.user || null,
   });
 });
 
 const renderRecipeCreate = asyncHandler(async (req, res) => {
   res.render("pages/recipe-create", {
     title: "Create Recipe",
+    user: req.user || null,
   });
 });
 
 const renderLogin = (req, res) => {
-  res.render("pages/login", { title: "Login" });
+  res.render("pages/login", { 
+    title: "Login",
+    errors: [],
+    formData: {},
+    user: req.user || null,
+  });
 };
 
 const renderRegister = (req, res) => {
-  res.render("pages/register", { title: "Register" });
+  res.render("pages/register", { 
+    title: "Register",
+    errors: [],
+    formData: {},
+    user: req.user || null,
+  });
 };
 
 module.exports = {

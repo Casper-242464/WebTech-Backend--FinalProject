@@ -32,7 +32,7 @@ npm install
 
 ```bash
 PORT=3000
-MONGO_URI=mongodb://127.0.0.1:27017/recipe_share
+MONGO_URI=mongodb://127.0.0.1:27017/RecipeShare
 JWT_SECRET=change_me
 JWT_EXPIRES_IN=7d
 ```
